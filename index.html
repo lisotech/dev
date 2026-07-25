@@ -20,6 +20,29 @@
             --call-hover: #0369a1;
             --shadow: 0 10px 25px rgba(16, 42, 67, 0.08);
             --border-color: #bcccdc;
+            --track-bg: #f8fafc;
+            --contact-bg: #f0f4f8;
+            --audio-panel: #f0f4f8;
+            --genre-bg: #d9e2ec;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #102a43 0%, #0b192c 100%);
+            --card-bg: #18283b;
+            --text-primary: #f0f4f8;
+            --text-secondary: #9fb3c8;
+            --accent-color: #627d98;
+            --accent-hover: #829ab1;
+            --whatsapp-color: #2e7d32;
+            --whatsapp-hover: #388e3c;
+            --call-color: #0284c7;
+            --call-hover: #0369a1;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            --border-color: #334e68;
+            --track-bg: #102a43;
+            --contact-bg: #102a43;
+            --audio-panel: #243b53;
+            --genre-bg: #243b53;
         }
 
         * {
@@ -27,6 +50,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
@@ -125,7 +149,7 @@
         }
 
         .track-card {
-            background: #f8fafc;
+            background: var(--track-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 1.25rem;
@@ -154,7 +178,7 @@
 
         .track-genre {
             font-size: 0.85rem;
-            background: #d9e2ec;
+            background: var(--genre-bg);
             color: var(--accent-color);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
@@ -168,13 +192,13 @@
         }
 
         audio::-webkit-media-controls-panel {
-            background-color: #f0f4f8;
+            background-color: var(--audio-panel);
             border-radius: 8px;
         }
 
         /* Contact / Booking Section */
         .contact-section {
-            background: #f0f4f8;
+            background: var(--contact-bg);
             padding: 1.75rem 1.5rem;
             border-radius: 10px;
             text-align: center;
@@ -236,6 +260,44 @@
             background: var(--call-hover);
         }
 
+        /* Floating Theme Toggle Button */
+        .theme-toggle-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent-hover);
+        }
+
+        .theme-toggle-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Hide/Show icons based on active theme */
+        .sun-icon { display: none; }
+        .moon-icon { display: block; }
+
+        [data-theme="dark"] .sun-icon { display: block; }
+        [data-theme="dark"] .moon-icon { display: none; }
+
         /* Footer */
         footer {
             text-align: center;
@@ -266,7 +328,7 @@
         <!-- Header Banner -->
         <header>
             <div class="default-logo">
-                <img src="zoom.jpeg" alt="Man Vid Music Logo">
+                <img src="logo.png" alt="Man Vid Music Logo">
             </div>
             <div>
                 <h1>Man Vid Music</h1>
@@ -366,5 +428,33 @@
         </footer>
     </div>
 
+    <!-- Floating Theme Toggle Button -->
+    <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme">
+        <!-- Sun Icon -->
+        <svg class="sun-icon" viewBox="0 0 24 24">
+            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36l-1.06 1.06c-.39.39-.39 1.03 0 1.41.39.39 1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0z"/>
+        </svg>
+        <!-- Moon Icon -->
+        <svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M12.3 2c-5.52 0-10 4.48-10 10 0 4.54 3.08 8.35 7.27 9.43.34.09.52-.29.3-.57-.96-1.25-1.57-2.82-1.57-4.53 0-4.14 3.36-7.5 7.5-7.5 1.71 0 3.28.61 4.53 1.57.28.22.66.04.57-.3C20.65 5.08 16.84 2 12.3 2z"/>
+        </svg>
+    </button>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved user preference
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            let theme = htmlElement.getAttribute('data-theme');
+            let newTheme = theme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
 </body>
 </html>
