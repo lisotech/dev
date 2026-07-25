@@ -12,6 +12,10 @@
             --text-secondary: #486581;
             --accent-color: #334e68;
             --accent-hover: #243b53;
+            --whatsapp-color: #25d366;
+            --whatsapp-hover: #1ebe5d;
+            --call-color: #0284c7;
+            --call-hover: #0369a1;
             --shadow: 0 10px 25px rgba(16, 42, 67, 0.08);
             --border-color: #bcccdc;
         }
@@ -47,13 +51,33 @@
         header {
             background: linear-gradient(135deg, #243b53 100%, #102a43 0%);
             color: #ffffff;
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .default-logo {
+            width: 80px;
+            height: 80px;
+            background: #ffffff;
+            color: var(--text-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--border-color);
+            letter-spacing: -1px;
         }
 
         header h1 {
             font-size: 2.75rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             letter-spacing: 1px;
         }
 
@@ -147,7 +171,7 @@
         /* Contact / Booking Section */
         .contact-section {
             background: #f0f4f8;
-            padding: 1.55rem;
+            padding: 1.75rem 1.5rem;
             border-radius: 10px;
             text-align: center;
             border: 1px solid var(--border-color);
@@ -163,19 +187,49 @@
             margin-bottom: 1.25rem;
         }
 
-        .btn {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
         }
 
-        .btn:hover {
-            background: var(--accent-hover);
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .btn-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp-color);
+        }
+
+        .btn-whatsapp:hover {
+            background: var(--whatsapp-hover);
+        }
+
+        .btn-call {
+            background: var(--call-color);
+        }
+
+        .btn-call:hover {
+            background: var(--call-hover);
         }
 
         /* Footer */
@@ -207,8 +261,11 @@
     <div class="container">
         <!-- Header Banner -->
         <header>
-            <h1>Man Vid Music</h1>
-            <p>Independent Producer & Sound Artist</p>
+            <div class="default-logo">MV</div>
+            <div>
+                <h1>Man Vid Music</h1>
+                <p>Independent Producer & Sound Artist</p>
+            </div>
         </header>
 
         <!-- Main Content Area -->
@@ -232,7 +289,6 @@
                             <span class="track-genre">Man Vid</span>
                         </div>
                         <audio controls preload="none">
-                            <!-- Replace src with your actual MPEG/MP3 file link or local path -->
                             <source src="Uliko Weka.mpeg" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
@@ -280,7 +336,20 @@
             <section class="contact-section">
                 <h3>Bookings & Collaborations</h3>
                 <p>Interested in working together or licensing tracks? Reach out directly.</p>
-                <a href="wa.me/260979757938" class="btn">Get in Touch</a>
+                <div class="button-group">
+                    <!-- Original WhatsApp Logo SVG -->
+                    <a href="https://wa.me/260979757938" target="_blank" class="btn-icon btn-whatsapp" title="Chat on WhatsApp">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.04 20.1c-1.48 0-2.93-.4-4.18-1.15l-.3-.18-3.11.82.83-3.03-.2-.31c-.82-1.31-1.25-2.83-1.25-4.38 0-4.54 3.69-8.23 8.23-8.23 2.2 0 4.27.86 5.82 2.41 1.55 1.55 2.41 3.62 2.41 5.82 0 4.54-3.69 8.23-8.25 8.23zm4.51-6.15c-.25-.12-1.47-.73-1.7-.82-.23-.09-.39-.13-.56.12-.17.25-.65.82-.8 1-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.28.37-.42.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.17.16 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/>
+                        </svg>
+                    </a>
+                    <!-- Original Phone Call Logo SVG -->
+                    <a href="tel:+260979757938" class="btn-icon btn-call" title="Phone Call">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                    </a>
+                </div>
             </section>
 
         </div>
